@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from solve_eq import runge_kutta
+from source.solve_eq import runge_kutta
 
 # Diff Eq. Parameters
 R=0.1
@@ -13,9 +13,59 @@ Y_0=1
 
 # Logarithmic Differential Equation
 def log_dif_eq(y:float,x:None,r:float=0.01,k:float=100)->float:
+    """
+      Logistic differential equation.
+
+      Computes the derivative dy/dx of the logistic growth model:
+
+          dy/dx = r * y * (1 - y / k)
+
+      Parameters
+      ----------
+      y : float
+          Current population value.
+      x : None
+          Placeholder for the independent variable (not used in this equation,
+          but kept for compatibility with ODE solvers that expect f(y, x)).
+      r : float, optional
+          Intrinsic growth rate (default is 0.01).
+      k : float, optional
+          Carrying capacity of the system (default is 100).
+
+      Returns
+      -------
+      float
+          Derivative dy/dx at the given value of y.
+      """
     return r*y*(1-y/k)
 
 def analytic_sol(y0:float,interval:tuple,r:float=0.01,k:float=100)->list:
+    """
+        Analytical solution of the logistic growth equation.
+
+        Generates the solution curve for the logistic growth model:
+
+            y(x) = (y0 * k) / (y0 + (k - y0) * exp(-r * x))
+
+        The curve is sampled over the given interval.
+
+        Parameters
+        ----------
+        y0 : float
+            Initial value of the population at x = 0.
+        interval : tuple
+            Two-element tuple (x_start, x_end) defining the domain of the solution.
+        r : float, optional
+            Intrinsic growth rate (default is 0.01).
+        k : float, optional
+            Carrying capacity of the system (default is 100).
+
+        Returns
+        -------
+        list of tuple
+            A list of (x, y) pairs representing the solution curve sampled at
+            1000 evenly spaced points across the interval.
+        """
     x_values = np.linspace(interval[0], interval[1], 1000)
     curve = [  ( x, y0* k / (y0 + (k - y0) * np.exp(- r * x)) ) for x in x_values]
     return curve
