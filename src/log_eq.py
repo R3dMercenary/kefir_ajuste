@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from source.solve_eq import runge_kutta
+from src.solve_eq import runge_kutta
 
 # Diff Eq. Parameters
 R=0.1
@@ -12,7 +12,7 @@ n_points=50
 Y_0=1
 
 # Logarithmic Differential Equation
-def log_dif_eq(y:float,x:None,r:float=0.01,k:float=100)->float:
+def log_dif_eq(y:float,x:float,r:float=0.01,k:float=100)->float:
     """
       Logistic differential equation.
 
@@ -24,7 +24,7 @@ def log_dif_eq(y:float,x:None,r:float=0.01,k:float=100)->float:
       ----------
       y : float
           Current population value.
-      x : None
+      x : float
           Placeholder for the independent variable (not used in this equation,
           but kept for compatibility with ODE solvers that expect f(y, x)).
       r : float, optional
@@ -37,6 +37,8 @@ def log_dif_eq(y:float,x:None,r:float=0.01,k:float=100)->float:
       float
           Derivative dy/dx at the given value of y.
       """
+
+
     return r*y*(1-y/k)
 
 def analytic_sol(y0:float,interval:tuple,r:float=0.01,k:float=100)->list:
