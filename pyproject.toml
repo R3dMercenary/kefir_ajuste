@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "kefir-ajuste"
+name = "kefir_ajuste"
 version = "0.1.0"
 description = "Ajusta curvas a puntos de crecimiento de granos de kefir"
 authors = ["Federico Cirett <fd.cirett@gmail.com>"]
@@ -12,6 +12,11 @@ numpy = ">=2.0.2,<2.1.0"
 matplotlib = ">=3.9.4,<3.10.0"
 pandas = ">=2.3.2,<2.4.0"
 
+
+[tool.poetry.group.dev.dependencies]
+myst-nb = {version = "^1.3.0", python = "^3.12"}
+sphinx-autoapi = "^3.6.0"
+sphinx-rtd-theme = "^3.0.2"
 
 [build-system]
 requires = ["poetry-core"]
